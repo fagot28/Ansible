@@ -1,13 +1,13 @@
-**Пример - конфиги apache не полные**
+**Пример - конфиги прокси частично удалены**
 
-**Автоматизация работы с кластером Apache**
+**Автоматизация работы с прокси сервером**
 
 **Управляется Jenkins**
-https://jenkins.technocom.tech/view/PROD-CONFIG/job/TIS-UGRA-httpd/
+ https://jenkins.technocom.tech/view/CONFIG/job/TECHNOCOM-nginx/
 
-**Запуск плейбука для обновления конфига Apache и его перезапуска:**
+**Запуск плейбука для обновления конфига nginx и его перезапуска:**
 
-ansible-playbook httpd.yml --tags="httpd" --ask-vault-pass
+ansible-playbook nginx.yml --tags="nginx" --ask-vault-pass
 
 **Сборка контейнера для запуска Ansible**
 

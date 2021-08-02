@@ -1,12 +1,12 @@
 ---
 
-- hosts: httpd
+- hosts: nginx
   become: true
   gather_facts: no
 
   vars_files:
     - ./group_vars/vars.yml
   roles:
-    - httpd
+    - nginx
   handlers:
     - include: handlers/main.yml

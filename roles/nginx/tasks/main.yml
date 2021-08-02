@@ -1,0 +1,51 @@
+---
+- name: Remove Apache
+  dnf:
+    name: httpd
+    state: absent
+    #workaround Todo fix it
+- name: Remove useless dir
+  shell: "rm -rf /var/www/html/"
+  tags:
+    - tmp
+  notify: Restart Nginx
+
+###
+
+- name: Install Nginx web server
+  dnf:
+    name: nginx
+    state: latest
+  notify: Restart Nginx
+  tags:
+    - tmp
+
+###
+- name: Update nginx config files
+  become: true
+  template:
+    src: templates/nginx.conf
+    dest: "/etc/nginx/"
+  tags:
+    - nginx
+  notify: Restart Nginx
+
+###
+- name: Update nginx config files
+  become: true
+  copy:
+    src: templates/conf.d
+    dest: /etc/nginx
+  tags:
+    - nginx
+  notify: Restart Nginx
+
+###
+- name: Update nginx config files
+  become: true
+  copy:
+    src: templates/snippets
+    dest: /etc/nginx
+  tags:
+    - nginx
+  notify: Restart Nginx
