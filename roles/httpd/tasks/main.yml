@@ -1,0 +1,29 @@
+---
+- name: Install Apache web server
+  become: true
+  dnf:
+    name: httpd
+    state: latest
+  notify: Restart Apache
+  tags:
+    - tmp
+
+###
+- name: Update apache config files
+  become: true
+  copy:
+    src: templates/conf
+    dest: "/etc/httpd/"
+  tags:
+    - httpd
+  notify: Restart Apache
+
+###
+- name: Update apache config files
+  become: true
+  copy:
+    src: templates/conf.d
+    dest: "/etc/httpd/"
+  tags:
+    - httpd
+  notify: Restart Apache

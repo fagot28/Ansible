@@ -1,0 +1,12 @@
+---
+
+- hosts: httpd
+  become: true
+  gather_facts: no
+
+  vars_files:
+    - ./group_vars/vars.yml
+  roles:
+    - httpd
+  handlers:
+    - include: handlers/main.yml
